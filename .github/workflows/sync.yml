@@ -23,7 +23,7 @@ jobs:
 
       - name: sync
         run: |
-          set -x
+          # set -x
 
           sudo mkdir /mnt/sync
           sudo chown runner:runner -R /mnt/sync
@@ -37,6 +37,8 @@ jobs:
             url=$(echo "$config" | jq -r '.url')
             type=$(echo "$config" | jq -r '.type')
             repo=$(echo "$config" | jq -r '.repo')
+
+            echo "target: $repo"
 
             git ls-remote --quiet --heads --tags "$url" > remote-src
             git ls-remote --quiet --heads --tags "https://github.com/external-mirrors/$repo" > remote-dist
