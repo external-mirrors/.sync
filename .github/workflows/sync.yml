@@ -1,0 +1,54 @@
+name: Sync
+
+on:
+  workflow_dispatch:
+    # inputs:
+    #   repo:
+    #     type: string
+    #     description: 'Target repo'
+    #     required: false
+    #     default: ''
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          sudo mkdir /mnt/sync
+          sudo chown runner:runner -R /mnt/sync
+
+      - uses: actions/checkout@v4
+
+      - uses: actions/create-github-app-token@v2
+        id: app-token
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.PRIVATE_KEY }}
+
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          cd /mnt/sync
+          jq -c '.[]' repos.json | while read -r config; do
+            url=$(echo "$config" | jq -r '.id')
+            type=$(echo "$config" | jq -r '.name')
+            repo=$(echo "$config" | jq -r '.city')
+
+            set +e
+            git ls-remote --quiet --heads --tags "$url" > remote-src
+            git ls-remote --quiet --heads --tags "https://github.com/external-mirrors/$repo" > remote-dist
+            diff remote-src remote-dist
+            res="$?"
+            if [ "$res" -eq 0 ]; then
+              continue
+            fi
+            set -e
+
+            mkdir repo && pushd repo
+            git clone --filter=blob:none --mirror "$url" .
+            pushd "$repo"
+            git remote set-url --push origin "hhttps://x-access-token:${{ steps.app-token.outputs.token }}@github.com/external-mirrors/$repo"
+            git push
+            popd
+            rm -rf repo remote-src remote-dist
+          done
