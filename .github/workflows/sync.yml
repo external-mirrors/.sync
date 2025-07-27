@@ -61,7 +61,8 @@ jobs:
             gh repo view "external-mirrors/$repo" > /dev/null
             ret="$?"
             if [ "$ret" -ne 0 ]; then
-              gh repo create "extinteger expression expectedernal-mirrors/$repo" --homepage "$url" --disable-issues --disable-wiki --public
+              echo "[$repo] Creating target repo"
+              gh repo create "expectedernal-mirrors/$repo" --homepage "$url" --disable-issues --disable-wiki --public
             fi
             set -e
 
