@@ -54,8 +54,9 @@ jobs:
 
             mkdir "$repo" && pushd "$repo"
 
-            git ls-remote --quiet --heads --tags "$url" > remote-src
-            git ls-remote --quiet --heads --tags "https://github.com/external-mirrors/$repo" > remote-dist
+            echo "[$repo] Compare remotes"
+            git ls-remote --quiet --heads --tags --refs "$url" > remote-src
+            git ls-remote --quiet --heads --tags --refs "https://github.com/external-mirrors/$repo" > remote-dist
             set +e
             diff remote-src remote-dist
             res="$?"
@@ -65,10 +66,13 @@ jobs:
             fi
             set -e
 
+            echo "[$repo] Cloning source repo"
             mkdir repo-dir && pushd repo-dir
             git clone --filter=blob:none --mirror "$url" .
             git remote set-url --push origin "https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/external-mirrors/$repo"
+            echo "[$repo] Pushing to mirror repo"
             git push
             popd
+            echo "[$repo] Cleaning"
             rm -rf repo-dir remote-src remote-dist
           done
