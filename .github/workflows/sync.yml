@@ -70,10 +70,15 @@ jobs:
 
             echo "[$repo] Cloning source repo"
             mkdir repo-dir && cd repo-dir
-            git clone --filter=blob:none --mirror "$url" .
+            git init --bare
+            git remote add --mirror=fetch origin "$url"
+            git config unset --all remote.origin.fetch
+            git config set --append remote.origin.fetch '+refs/heads/*:refs/heads/*'
+            git config set --append remote.origin.fetch '+refs/tags/*:refs/tags/*'
             git remote set-url --push origin "https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/external-mirrors/$repo"
+            git fetch --filter=blob:none
             echo "[$repo] Pushing to mirror repo"
-            git push origin 'refs/heads/*:refs/heads/*' 'refs/tags/*:refs/tags/*'
+            git push --mirror origin 'refs/heads/*:refs/heads/*' 'refs/tags/*:refs/tags/*'
             cd ..
             echo "[$repo] Cleaning"
             rm -rf repo-dir remote-src remote-dist
