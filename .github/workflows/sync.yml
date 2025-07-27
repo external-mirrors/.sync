@@ -62,6 +62,7 @@ jobs:
             res="$?"
             if [ "$res" -eq 0 ]; then
               set -e
+              echo "[$repo] Mirror is synchronized. skip"
               continue
             fi
             set -e
