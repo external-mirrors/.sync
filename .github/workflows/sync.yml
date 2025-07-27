@@ -34,16 +34,17 @@ jobs:
           cp repos.json /mnt/sync/repos.json
           cd /mnt/sync
           jq -c '.[]' repos.json | while read -r config; do
-            url=$(echo "$config" | jq -r '.id')
-            type=$(echo "$config" | jq -r '.name')
-            repo=$(echo "$config" | jq -r '.city')
+            url=$(echo "$config" | jq -r '.url')
+            type=$(echo "$config" | jq -r '.type')
+            repo=$(echo "$config" | jq -r '.repo')
 
-            set +e
             git ls-remote --quiet --heads --tags "$url" > remote-src
             git ls-remote --quiet --heads --tags "https://github.com/external-mirrors/$repo" > remote-dist
+            set +e
             diff remote-src remote-dist
             res="$?"
             if [ "$res" -eq 0 ]; then
+              set -e
               continue
             fi
             set -e
