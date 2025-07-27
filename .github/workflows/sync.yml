@@ -13,10 +13,6 @@ jobs:
   main:
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          sudo mkdir /mnt/sync
-          sudo chown runner:runner -R /mnt/sync
-
       - uses: actions/checkout@v4
 
       - uses: actions/create-github-app-token@v2
@@ -25,9 +21,15 @@ jobs:
           app-id: ${{ secrets.APP_ID }}
           private-key: ${{ secrets.PRIVATE_KEY }}
 
-      - run: |
+      - name: sync
+        run: |
+          sudo mkdir /mnt/sync
+          sudo chown runner:runner -R /mnt/sync
+          
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          cp repos.json /mnt/sync/repos.json
           cd /mnt/sync
           jq -c '.[]' repos.json | while read -r config; do
             url=$(echo "$config" | jq -r '.id')
