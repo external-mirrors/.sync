@@ -58,10 +58,10 @@ jobs:
 
             echo "[$repo] Check if the mirror repository is created"
             set +e
-            gh repo view "external-mirrors/$repo"
+            gh repo view "external-mirrors/$repo" > /dev/null
             ret="$?"
-            if [ "$res" -ne 0 ]; then
-              gh repo create "external-mirrors/$repo" --homepage "$url" --disable-issues --disable-wiki --public
+            if [ "$ret" -ne 0 ]; then
+              gh repo create "extinteger expression expectedernal-mirrors/$repo" --homepage "$url" --disable-issues --disable-wiki --public
             fi
             set -e
 
@@ -71,7 +71,7 @@ jobs:
             set +e
             diff remote-src remote-dist > /dev/null
             ret="$?"
-            if [ "$res" -eq 0 ]; then
+            if [ "$ret" -eq 0 ]; then
               set -e
               echo "[$repo] Mirror is synchronized. skip"
               cd /mnt/sync
