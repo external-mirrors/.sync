@@ -23,6 +23,8 @@ jobs:
 
       - name: sync
         run: |
+          set -x
+
           sudo mkdir /mnt/sync
           sudo chown runner:runner -R /mnt/sync
           
@@ -48,7 +50,6 @@ jobs:
 
             mkdir repo && pushd repo
             git clone --filter=blob:none --mirror "$url" .
-            pushd "$repo"
             git remote set-url --push origin "hhttps://x-access-token:${{ steps.app-token.outputs.token }}@github.com/external-mirrors/$repo"
             git push
             popd
