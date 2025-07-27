@@ -71,7 +71,7 @@ jobs:
             git clone --filter=blob:none --mirror "$url" .
             git remote set-url --push origin "https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/external-mirrors/$repo"
             echo "[$repo] Pushing to mirror repo"
-            git push origin
+            git push origin 'refs/heads/*:refs/heads/*' 'refs/tags/*:refs/tags/*'
             popd
             echo "[$repo] Cleaning"
             rm -rf repo-dir remote-src remote-dist
