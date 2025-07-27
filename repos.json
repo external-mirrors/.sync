@@ -3,5 +3,15 @@
     "url": "https://gitlab.freedesktop.org/mesa/mesa.git",
     "type": "git",
     "repo": "mesa"
+  },
+  {
+    "url": "https://codeberg.org/Garnet/sgx540-reversing",
+    "type": "git",
+    "repo": "sgx540-reversing"
+  },
+  {
+    "url": "https://gitlab.postmarketos.org/postmarketOS/pmaports.git",
+    "type": "git",
+    "repo": "pmaports"
   }
 ]
