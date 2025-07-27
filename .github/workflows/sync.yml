@@ -34,6 +34,8 @@ jobs:
           git config --global user.email '${{ steps.get-user-id.outputs.user-id }}+${{ steps.app-token.outputs.app-slug }}[bot]@users.noreply.github.com'
 
       - name: Sync
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           # set -x
 
@@ -54,12 +56,21 @@ jobs:
 
             mkdir "$repo" && cd "$repo"
 
+            echo "[$repo] Check if the mirror repository is created"
+            set +e
+            gh repo view "external-mirrors/$repo"
+            ret="$?"
+            if [ "$res" -ne 0 ]; then
+              gh repo create "external-mirrors/$repo" --homepage "$url" --disable-issues --disable-wiki --public
+            fi
+            set -e
+
             echo "[$repo] Compare remotes"
             git ls-remote --quiet --heads --tags --refs "$url" > remote-src
             git ls-remote --quiet --heads --tags --refs "https://github.com/external-mirrors/$repo" > remote-dist
             set +e
             diff remote-src remote-dist > /dev/null
-            res="$?"
+            ret="$?"
             if [ "$res" -eq 0 ]; then
               set -e
               echo "[$repo] Mirror is synchronized. skip"
@@ -78,7 +89,7 @@ jobs:
             git remote set-url --push origin "https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/external-mirrors/$repo"
             git fetch --filter=blob:none
             echo "[$repo] Pushing to mirror repo"
-            git push --mirror origin 'refs/heads/*:refs/heads/*' 'refs/tags/*:refs/tags/*'
+            git push --mirror origin
             cd ..
             echo "[$repo] Cleaning"
             rm -rf repo-dir remote-src remote-dist
