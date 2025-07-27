@@ -58,11 +58,12 @@ jobs:
             git ls-remote --quiet --heads --tags --refs "$url" > remote-src
             git ls-remote --quiet --heads --tags --refs "https://github.com/external-mirrors/$repo" > remote-dist
             set +e
-            diff remote-src remote-dist
+            diff remote-src remote-dist > /dev/null
             res="$?"
             if [ "$res" -eq 0 ]; then
               set -e
               echo "[$repo] Mirror is synchronized. skip"
+              popd
               continue
             fi
             set -e
@@ -76,4 +77,5 @@ jobs:
             popd
             echo "[$repo] Cleaning"
             rm -rf repo-dir remote-src remote-dist
+            popd
           done
