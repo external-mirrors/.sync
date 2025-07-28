@@ -100,7 +100,7 @@ jobs:
             fi
             echo "[$repo] Pushing to mirror repo"
             git push --mirror origin
-            gh repo edit {owner}/{repo} --default-branch "refs/heads/$( git remote show origin | grep "^  HEAD branch: " | cut -c 16- )"
+            gh repo edit "external-mirrors/$repo" --default-branch "refs/heads/$( git remote show origin | grep "^  HEAD branch: " | cut -c 16- )"
             cd ..
             echo "[$repo] Cleaning"
             rm -rf repo-dir remote-src remote-dist
