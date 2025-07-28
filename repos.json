@@ -13,5 +13,15 @@
     "url": "https://gitlab.freedesktop.org/wlroots/wlroots.git",
     "type": "git",
     "repo": "wlroots"
+  },
+  {
+    "url": "https://gitlab.freedesktop.org/libinput/libinput.git",
+    "type": "git",
+    "repo": "libinput"
+  },
+  {
+    "url": "https://gitlab.freedesktop.org/mstoeckl/waypipe.git",
+    "type": "git",
+    "repo": "waypipe"
   }
 ]
