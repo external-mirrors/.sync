@@ -13,3 +13,7 @@ For example `feb356caff82e996ba0b898c02383fdfa3effc5f` .
     "repo": "mesa"
   }
 ```
+
+## omap5-sgx-ddk-um-linux (private)
+
+The mirror is not publicly available because this repository is an unknown license.
