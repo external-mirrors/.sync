@@ -55,6 +55,7 @@ jobs:
             url=$(echo "$config" | jq -r '.url')
             type=$(echo "$config" | jq -r '.type')
             repo=$(echo "$config" | jq -r '.repo')
+            private=$(echo "$config" | jq -r '.repo')
             first="0"
 
             echo "target: $repo"
@@ -68,13 +69,17 @@ jobs:
             set -e
             if [ "$ret" -ne 0 ]; then
               echo "[$repo] Creating target repo"
-              gh repo create "external-mirrors/$repo" --homepage "$url" --disable-issues --disable-wiki --public
+              if [ "$private" = true ]; then
+                gh repo create "external-mirrors/$repo" --homepage "$url" --disable-issues --disable-wiki --private
+              else
+                gh repo create "external-mirrors/$repo" --homepage "$url" --disable-issues --disable-wiki --public
+              fi
               first="1"
             fi
 
             echo "[$repo] Compare remotes"
             git ls-remote --quiet --heads --tags --refs "$url" > remote-src
-            git ls-remote --quiet --heads --tags --refs "https://github.com/external-mirrors/$repo" > remote-dist
+            git ls-remote --quiet --heads --tags --refs "https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/external-mirrors/$repo" > remote-dist
             set +e
             diff remote-src remote-dist > /dev/null
             ret="$?"
