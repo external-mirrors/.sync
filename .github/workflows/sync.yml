@@ -55,7 +55,7 @@ jobs:
             url=$(echo "$config" | jq -r '.url')
             type=$(echo "$config" | jq -r '.type')
             repo=$(echo "$config" | jq -r '.repo')
-            private=$(echo "$config" | jq -r '.repo')
+            private=$(echo "$config" | jq -r '.private')
             first="0"
 
             echo "target: $repo"
