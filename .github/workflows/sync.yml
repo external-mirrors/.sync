@@ -40,6 +40,8 @@ jobs:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           # set -x
+          echo "show 'df -h'"
+          df -h
 
           sudo mkdir /mnt/sync
           sudo chown runner:runner -R /mnt/sync
