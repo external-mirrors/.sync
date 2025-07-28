@@ -90,7 +90,7 @@ jobs:
             git config unset --all remote.origin.fetch
             git config set --append remote.origin.fetch '+refs/heads/*:refs/heads/*'
             git config set --append remote.origin.fetch '+refs/tags/*:refs/tags/*'
-            git symbolic-ref HEAD "refs/heads/$( git remote show origin | grep "^  HEAD branch: " | cut -c 16- )"
+            gh repo edit {owner}/{repo} --default-branch "refs/heads/$( git remote show origin | grep "^  HEAD branch: " | cut -c 16- )"
             git remote set-url --push origin "https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/external-mirrors/$repo"
             if [ "$first" -eq 0 ]; then
               git fetch --filter=blob:none
