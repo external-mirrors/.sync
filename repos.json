@@ -39,5 +39,15 @@
     "type": "git",
     "repo": "omap5-sgx-ddk-um-linux",
     "private": true
+  },
+  {
+    "url": "https://codeberg.org/silverpill/mitra.git",
+    "type": "git",
+    "repo": "mitra"
+  },
+  {
+    "url": "https://codeberg.org/silverpill/mitra-web.git",
+    "type": "git",
+    "repo": "mitra-web"
   }
 ]
