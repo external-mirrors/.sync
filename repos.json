@@ -59,5 +59,10 @@
     "url": "https://akkoma.dev/AkkomaGang/akkoma.git",
     "type": "git",
     "repo": "akkoma"
+  },
+  {
+    "url": "https://git.code.sf.net/p/linuxjm/code",
+    "type": "git",
+    "repo": "linuxjm"
   }
 ]
