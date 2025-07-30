@@ -74,5 +74,10 @@
     "url": "https://gitlab.freedesktop.org/wayland/weston.git",
     "type": "git",
     "repo": "weston"
+  },
+  {
+    "url": "https://codeberg.org/forgejo/forgejo.git",
+    "type": "git",
+    "repo": "forgejo"
   }
 ]
