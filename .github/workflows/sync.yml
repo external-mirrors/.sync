@@ -98,12 +98,12 @@ jobs:
             git config unset --all remote.origin.fetch
 
             git config set --append remote.origin.fetch '+refs/heads/*:refs/heads/*'
-            echo "$config" | jq -r 'try .ignore.heads[] catch ""' | while read -r ignore_name; do
+            echo "$config" | jq -r 'try .ignore.heads[] catch empty' | while read -r ignore_name; do
               git config set --append remote.origin.fetch "^refs/heads/$ignore_name"
             done
 
             git config set --append remote.origin.fetch '+refs/tags/*:refs/tags/*'
-            echo "$config" | jq -r 'try .ignore.tags[] catch ""' | while read -r ignore_name; do
+            echo "$config" | jq -r 'try .ignore.tags[] catch empty' | while read -r ignore_name; do
               git config set --append remote.origin.fetch "^refs/tags/$ignore_name"
             done
 
