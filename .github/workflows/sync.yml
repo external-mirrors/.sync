@@ -80,7 +80,7 @@ jobs:
             fi
 
             echo "[$repo] Compare remotes"
-            git ls-remote --quiet --heads --tags "$url" | grep -vFf <(echo -n "$ignore_heads" | "sed 's/^/refs\/heads\//') | grep -vFf <(echo -n "$ignore_tags" | "sed 's/^/refs\/tags\//') > remote-src
+            git ls-remote --quiet --heads --tags "$url" | grep -vFf <(echo -n "$ignore_heads" | sed 's/^/refs\/heads\//') | grep -vFf <(echo -n "$ignore_tags" | sed 's/^/refs\/tags\//') > remote-src
             git ls-remote --quiet --heads --tags "https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/external-mirrors/$repo" > remote-dist
             set +e
             diff remote-src remote-dist > /dev/null
@@ -100,13 +100,13 @@ jobs:
             git config unset --all remote.origin.fetch
 
             git config set --append remote.origin.fetch '+refs/heads/*:refs/heads/*'
-            echo "$ignore_heads" | while read -r ignore_name; do
+            echo -n "$ignore_heads" | while read -r ignore_name; do
               git config set --append remote.origin.fetch "^refs/heads/$ignore_name"
             done
 
             git config set --append remote.origin.fetch '+refs/tags/*:refs/tags/*'
             # Negative refspecs for tags are not supported
-            # echo "$ignore_tags" | while read -r ignore_name; do
+            # echo -n "$ignore_tags" | while read -r ignore_name; do
             #   git config set --append remote.origin.fetch "^refs/tags/$ignore_name:refs/tags/$ignore_name"
             # done
 
