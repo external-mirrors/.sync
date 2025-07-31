@@ -101,6 +101,7 @@ jobs:
             if [ "$first" -eq 0 ]; then
               git fetch --filter=blob:none
             else
+              echo "[$repo] First time sync. full cloning"
               git fetch
             fi
             echo "[$repo] Pushing to mirror repo"
