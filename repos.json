@@ -159,5 +159,10 @@
         "vtx-0-2-24112003"
       ]
     }
+  },
+  {
+    "url": "https://repo.or.cz/syslinux.git",
+    "type": "git",
+    "repo": "syslinux"
   }
 ]
