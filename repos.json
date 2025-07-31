@@ -79,5 +79,10 @@
     "url": "https://codeberg.org/forgejo/forgejo.git",
     "type": "git",
     "repo": "forgejo"
+  },
+  {
+    "url": "https://git.savannah.gnu.org/git/gnulib.git/",
+    "type": "git",
+    "repo": "gnulib"
   }
 ]
