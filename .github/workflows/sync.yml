@@ -57,6 +57,8 @@ jobs:
             repo=$(echo "$config" | jq -r '.repo')
             private=$(echo "$config" | jq -r '.private')
             first="0"
+            ignore_heads="$(echo "$config" | jq -r 'try .ignore.heads[] catch empty')"
+            ignore_tags="$(echo "$config" | jq -r 'try .ignore.tags[] catch empty')"
 
             echo "target: $repo"
 
@@ -78,7 +80,7 @@ jobs:
             fi
 
             echo "[$repo] Compare remotes"
-            git ls-remote --quiet --heads --tags "$url" > remote-src
+            git ls-remote --quiet --heads --tags "$url" | grep -vFf <(echo "$ignore_heads" | "sed 's/^/refs\/heads\//') | grep -vFf <(echo "$ignore_tags" | "sed 's/^/refs\/tags\//') > remote-src
             git ls-remote --quiet --heads --tags "https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/external-mirrors/$repo" > remote-dist
             set +e
             diff remote-src remote-dist > /dev/null
@@ -98,13 +100,13 @@ jobs:
             git config unset --all remote.origin.fetch
 
             git config set --append remote.origin.fetch '+refs/heads/*:refs/heads/*'
-            echo "$config" | jq -r 'try .ignore.heads[] catch empty' | while read -r ignore_name; do
+            echo "$ignore_heads" | while read -r ignore_name; do
               git config set --append remote.origin.fetch "^refs/heads/$ignore_name"
             done
 
             git config set --append remote.origin.fetch '+refs/tags/*:refs/tags/*'
             # Negative refspecs for tags are not supported
-            # echo "$config" | jq -r 'try .ignore.tags[] catch empty' | while read -r ignore_name; do
+            # echo "$ignore_tags" | while read -r ignore_name; do
             #   git config set --append remote.origin.fetch "^refs/tags/$ignore_name:refs/tags/$ignore_name"
             # done
 
@@ -116,7 +118,6 @@ jobs:
               git fetch
             fi
 
-            ignore_tags="$(echo "$config" | jq -r 'try .ignore.tags[] catch empty')"
             if [ "$ignore_tags" != "" ]; then
               echo "[$repo] removing ignored tags"
               set +e
