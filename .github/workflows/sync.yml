@@ -57,8 +57,8 @@ jobs:
             repo=$(echo "$config" | jq -r '.repo')
             private=$(echo "$config" | jq -r '.private')
             first="0"
-            ignore_heads="$(echo "$config" | jq -r 'try .ignore.heads[] catch empty')"
-            ignore_tags="$(echo "$config" | jq -r 'try .ignore.tags[] catch empty')"
+            ignore_heads="$(echo -n "$config" | jq -r 'try .ignore.heads[] catch empty')"
+            ignore_tags="$(echo -n "$config" | jq -r 'try .ignore.tags[] catch empty')"
 
             echo "target: $repo"
 
@@ -80,7 +80,7 @@ jobs:
             fi
 
             echo "[$repo] Compare remotes"
-            git ls-remote --quiet --heads --tags "$url" | grep -vFf <(echo "$ignore_heads" | "sed 's/^/refs\/heads\//') | grep -vFf <(echo "$ignore_tags" | "sed 's/^/refs\/tags\//') > remote-src
+            git ls-remote --quiet --heads --tags "$url" | grep -vFf <(echo -n "$ignore_heads" | "sed 's/^/refs\/heads\//') | grep -vFf <(echo -n "$ignore_tags" | "sed 's/^/refs\/tags\//') > remote-src
             git ls-remote --quiet --heads --tags "https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/external-mirrors/$repo" > remote-dist
             set +e
             diff remote-src remote-dist > /dev/null
@@ -121,7 +121,7 @@ jobs:
             if [ "$ignore_tags" != "" ]; then
               echo "[$repo] removing ignored tags"
               set +e
-              git tag -d $(echo "$config" | jq -r 'try .ignore.tags[] catch empty')
+              git tag -d $(echo -n "$config" | jq -r 'try .ignore.tags[] catch empty')
               set -e
             fi
 
