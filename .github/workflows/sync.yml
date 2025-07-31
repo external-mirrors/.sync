@@ -80,7 +80,7 @@ jobs:
             fi
 
             echo "[$repo] Compare remotes"
-            git ls-remote --quiet --heads --tags "$url" | grep -Evf <(echo -n "$ignore_heads" | sed -e 's/^/\trefs\/heads\//' -e 's/$/$/') | grep -Evf <(echo -n "$ignore_tags" | sed -e 's/^/\trefs\/tags\//' -e 's/$/(^{})?$/') > remote-src
+            git ls-remote --quiet --heads --tags "$url" | grep -Evf <(echo -n "$ignore_heads" | sed -e 's/^/\trefs\/heads\//' -e 's/$/$/') | grep -Evf <(echo -n "$ignore_tags" | sed -e 's/^/\trefs\/tags\//' -e 's/$/(\\^\\{\\})?$/') > remote-src
             git ls-remote --quiet --heads --tags "https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/external-mirrors/$repo" > remote-dist
             set +e
             diff remote-src remote-dist > /dev/null
