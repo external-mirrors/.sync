@@ -119,7 +119,9 @@ jobs:
             ignore_tags="$(echo "$config" | jq -r 'try .ignore.tags[] catch empty')"
             if [ "$ignore_tags" != "" ]; then
               echo "[$repo] removing ignored tags"
+              set +e
               git tag -d $(echo "$config" | jq -r 'try .ignore.tags[] catch empty')
+              set -e
             fi
 
             echo "[$repo] Pushing to mirror repo"
