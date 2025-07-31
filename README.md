@@ -6,7 +6,7 @@ Mesa origin repo has a (some?) invalid object(s).
 
 For example `feb356caff82e996ba0b898c02383fdfa3effc5f` .
 
-- `git fsck`
+- `git fsck` -> `cut -c 14-53`
 - `git for-each-ref {hash}`
 
 ## omap5-sgx-ddk-um-linux (private)
