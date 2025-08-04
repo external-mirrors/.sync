@@ -159,5 +159,10 @@
         "vtx-0-2-24112003"
       ]
     }
+  },
+  {
+    "url": "https://gitlab.freedesktop.org/beignet/beignet.git",
+    "type": "git",
+    "repo": "beignet"
   }
 ]
