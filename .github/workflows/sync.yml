@@ -53,7 +53,7 @@ jobs:
 
           cp repos.json /mnt/sync/repos.json
           cd /mnt/sync
-          jq -c '.[]' repos.json | while IFS= read -r config; do;
+          jq -c '.[]' repos.json | while IFS= read -r config; do
             while [ "$(jobs -rp | wc -l)" -ge "$MAX_JOBS" ]; do
               sleep 0.1
             done
