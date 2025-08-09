@@ -145,6 +145,7 @@ jobs:
             }&
           done
 
-          echo "Waiting for all jobs to complete" 
+          echo "Waiting for all jobs to complete"
+          sleep 0.1
           wait
           echo "done"
