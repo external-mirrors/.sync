@@ -42,8 +42,9 @@ jobs:
           # set -x
           MAX_JOBS=3
 
-          echo "show 'df -h'"
+          echo "===== 'df -h' ====="
           df -h
+          echo "==================="
 
           sudo mkdir /mnt/sync
           sudo chown runner:runner -R /mnt/sync
@@ -147,5 +148,8 @@ jobs:
 
           echo "Waiting for all jobs to complete"
           sleep 0.1
+          echo "===== jobs ====="
+          jobs
+          echo "================"
           wait
           echo "done"
