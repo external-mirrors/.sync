@@ -40,6 +40,10 @@ jobs:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           # set -x
+
+          # not required
+          git config --global init.defaultBranch main
+
           MAX_JOBS=3
 
           tmp_fifo=$(mktemp -u)
@@ -153,8 +157,9 @@ jobs:
           done
 
           echo "Waiting for all jobs to complete"
+          sleep 0.5
           for ((i=0; i<${#JOBS[@]}; i++)); do
-              read -u 3
+            read -u 3
           done
           echo "done"
 
