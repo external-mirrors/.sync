@@ -40,6 +40,8 @@ jobs:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           # set -x
+          # enable job control
+          set -m
           MAX_JOBS=3
 
           echo "===== 'df -h' ====="
