@@ -54,6 +54,8 @@ jobs:
           cp repos.json /mnt/sync/repos.json
           cd /mnt/sync
           jq -c '.[]' repos.json | while IFS= read -r config; do
+            export config
+
             while [ "$(jobs -rp | wc -l)" -ge "$MAX_JOBS" ]; do
               sleep 0.1
             done
@@ -96,7 +98,8 @@ jobs:
               if [ "$ret" -eq 0 ]; then
                 echo "[$repo] Mirror is synchronized. skip"
                 cd /mnt/sync
-                continue
+                # continue
+                exit
               fi
   
               echo "[$repo] Cloning source repo"
@@ -138,7 +141,7 @@ jobs:
               cd ..
               echo "[$repo] Cleaning"
               rm -rf repo-dir remote-src remote-dist
-              cd ..
+              # cd ..
             }&
           done
 
