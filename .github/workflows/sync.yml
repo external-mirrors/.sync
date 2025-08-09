@@ -40,9 +40,7 @@ jobs:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           # set -x
-          # enable job control
-          # set -m
-          set -i
+          set -m
           MAX_JOBS=3
 
           echo "===== 'df -h' ====="
@@ -51,9 +49,6 @@ jobs:
 
           sudo mkdir /mnt/sync
           sudo chown runner:runner -R /mnt/sync
-
-          # git config user.name "github-actions[bot]"
-          # git config user.email "github-actions[bot]@users.noreply.github.com"
 
           cp repos.json /mnt/sync/repos.json
           cd /mnt/sync
