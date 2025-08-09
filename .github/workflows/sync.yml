@@ -41,7 +41,8 @@ jobs:
         run: |
           # set -x
           # enable job control
-          set -m
+          # set -m
+          set -i
           MAX_JOBS=3
 
           echo "===== 'df -h' ====="
