@@ -164,5 +164,15 @@
     "url": "https://gitlab.freedesktop.org/beignet/beignet.git",
     "type": "git",
     "repo": "beignet"
+  },
+  {
+    "url": "https://gitlab.postmarketos.org/postmarketOS/pmbootstrap.git",
+    "type": "git",
+    "repo": "pmbootstrap"
+  },
+  {
+    "url": "https://gitlab.postmarketos.org/postmarketOS/buffybox.git",
+    "type": "git",
+    "repo": "buffybox"
   }
 ]
