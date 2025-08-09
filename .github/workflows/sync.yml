@@ -59,7 +59,7 @@ jobs:
               sleep 0.1
             done
 
-            {
+            (
               url=$(echo "$config" | jq -r '.url')
               type=$(echo "$config" | jq -r '.type')
               repo=$(echo "$config" | jq -r '.repo')
@@ -141,7 +141,7 @@ jobs:
               echo "[$repo] Cleaning"
               rm -rf repo-dir remote-src remote-dist
               # cd ..
-            }&
+            )&
           done
 
           echo "Waiting for all jobs to complete"
