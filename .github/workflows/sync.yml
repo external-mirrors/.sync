@@ -104,6 +104,7 @@ jobs:
                 echo "[$repo] Mirror is synchronized. skip"
                 cd /mnt/sync
                 # continue
+                echo >&3
                 exit
               fi
   
