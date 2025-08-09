@@ -40,6 +40,8 @@ jobs:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           # set -x
+          MAX_JOBS=3
+
           echo "show 'df -h'"
           df -h
 
@@ -51,85 +53,95 @@ jobs:
 
           cp repos.json /mnt/sync/repos.json
           cd /mnt/sync
-          jq -c '.[]' repos.json | while IFS= read -r config; do
-            url=$(echo "$config" | jq -r '.url')
-            type=$(echo "$config" | jq -r '.type')
-            repo=$(echo "$config" | jq -r '.repo')
-            private=$(echo "$config" | jq -r '.private')
-            first="0"
-            ignore_heads="$(echo -n "$config" | jq -r 'try .ignore.heads[] catch empty')"
-            ignore_tags="$(echo -n "$config" | jq -r 'try .ignore.tags[] catch empty')"
-
-            echo "target: $repo"
-
-            mkdir "$repo" && cd "$repo"
-
-            echo "[$repo] Check if the mirror repository is created"
-            set +e
-            gh repo view "external-mirrors/$repo" > /dev/null
-            ret="$?"
-            set -e
-            if [ "$ret" -ne 0 ]; then
-              echo "[$repo] Creating target repo"
-              if [ "$private" = true ]; then
-                gh repo create "external-mirrors/$repo" --homepage "$url" --disable-issues --disable-wiki --private
-              else
-                gh repo create "external-mirrors/$repo" --homepage "$url" --disable-issues --disable-wiki --public
-              fi
-              first="1"
-            fi
-
-            echo "[$repo] Compare remotes"
-            git ls-remote --quiet --heads --tags "$url" | grep -Evf <(echo -n "$ignore_heads" | sed -e 's/^/\trefs\/heads\//' -e 's/$/$/') | grep -Evf <(echo -n "$ignore_tags" | sed -e 's/^/\trefs\/tags\//' -e 's/$/(\\^\\{\\})?$/') > remote-src
-            git ls-remote --quiet --heads --tags "https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/external-mirrors/$repo" > remote-dist
-            set +e
-            diff remote-src remote-dist > /dev/null
-            ret="$?"
-            set -e
-            if [ "$ret" -eq 0 ]; then
-              echo "[$repo] Mirror is synchronized. skip"
-              cd /mnt/sync
-              continue
-            fi
-
-            echo "[$repo] Cloning source repo"
-            mkdir repo-dir && cd repo-dir
-            git init --bare
-            git remote add --mirror=fetch origin "$url"
-
-            git config unset --all remote.origin.fetch
-
-            git config set --append remote.origin.fetch '+refs/heads/*:refs/heads/*'
-            echo -n "$ignore_heads" | while IFS= read -r ignore_name; do
-              git config set --append remote.origin.fetch "^refs/heads/$ignore_name"
+          jq -c '.[]' repos.json | while IFS= read -r config; do;
+            while [ "$(jobs -rp | wc -l)" -ge "$MAX_JOBS" ]; do
+              sleep 0.1
             done
 
-            git config set --append remote.origin.fetch '+refs/tags/*:refs/tags/*'
-            # Negative refspecs for tags are not supported
-            # echo -n "$ignore_tags" | while IFS= read -r ignore_name; do
-            #   git config set --append remote.origin.fetch "^refs/tags/$ignore_name:refs/tags/$ignore_name"
-            # done
-
-            git remote set-url --push origin "https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/external-mirrors/$repo"
-            if [ "$first" -eq 0 ]; then
-              git fetch --filter=blob:none
-            else
-              echo "[$repo] First time sync. full cloning"
-              git fetch
-            fi
-
-            if [ "$ignore_tags" != "" ]; then
-              echo "[$repo] removing ignored tags"
+            {
+              url=$(echo "$config" | jq -r '.url')
+              type=$(echo "$config" | jq -r '.type')
+              repo=$(echo "$config" | jq -r '.repo')
+              private=$(echo "$config" | jq -r '.private')
+              first="0"
+              ignore_heads="$(echo -n "$config" | jq -r 'try .ignore.heads[] catch empty')"
+              ignore_tags="$(echo -n "$config" | jq -r 'try .ignore.tags[] catch empty')"
+  
+              echo "target: $repo"
+  
+              mkdir "$repo" && cd "$repo"
+  
+              echo "[$repo] Check if the mirror repository is created"
               set +e
-              git tag -d $(echo -n "$config" | jq -r 'try .ignore.tags[] catch empty')
+              gh repo view "external-mirrors/$repo" > /dev/null
+              ret="$?"
               set -e
-            fi
-
-            echo "[$repo] Pushing to mirror repo"
-            git push --mirror origin
-            gh repo edit "external-mirrors/$repo" --default-branch "$( git remote show origin | grep "^  HEAD branch: " | cut -c 16- )"
-            cd ..
-            echo "[$repo] Cleaning"
-            rm -rf repo-dir remote-src remote-dist
-            cd ..
+              if [ "$ret" -ne 0 ]; then
+                echo "[$repo] Creating target repo"
+                if [ "$private" = true ]; then
+                  gh repo create "external-mirrors/$repo" --homepage "$url" --disable-issues --disable-wiki --private
+                else
+                  gh repo create "external-mirrors/$repo" --homepage "$url" --disable-issues --disable-wiki --public
+                fi
+                first="1"
+              fi
+  
+              echo "[$repo] Compare remotes"
+              git ls-remote --quiet --heads --tags "$url" | grep -Evf <(echo -n "$ignore_heads" | sed -e 's/^/\trefs\/heads\//' -e 's/$/$/') | grep -Evf <(echo -n "$ignore_tags" | sed -e 's/^/\trefs\/tags\//' -e 's/$/(\\^\\{\\})?$/') > remote-src
+              git ls-remote --quiet --heads --tags "https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/external-mirrors/$repo" > remote-dist
+              set +e
+              diff remote-src remote-dist > /dev/null
+              ret="$?"
+              set -e
+              if [ "$ret" -eq 0 ]; then
+                echo "[$repo] Mirror is synchronized. skip"
+                cd /mnt/sync
+                continue
+              fi
+  
+              echo "[$repo] Cloning source repo"
+              mkdir repo-dir && cd repo-dir
+              git init --bare
+              git remote add --mirror=fetch origin "$url"
+  
+              git config unset --all remote.origin.fetch
+  
+              git config set --append remote.origin.fetch '+refs/heads/*:refs/heads/*'
+              echo -n "$ignore_heads" | while IFS= read -r ignore_name; do
+                git config set --append remote.origin.fetch "^refs/heads/$ignore_name"
+              done
+  
+              git config set --append remote.origin.fetch '+refs/tags/*:refs/tags/*'
+              # Negative refspecs for tags are not supported
+              # echo -n "$ignore_tags" | while IFS= read -r ignore_name; do
+              #   git config set --append remote.origin.fetch "^refs/tags/$ignore_name:refs/tags/$ignore_name"
+              # done
+  
+              git remote set-url --push origin "https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/external-mirrors/$repo"
+              if [ "$first" -eq 0 ]; then
+                git fetch --filter=blob:none
+              else
+                echo "[$repo] First time sync. full cloning"
+                git fetch
+              fi
+  
+              if [ "$ignore_tags" != "" ]; then
+                echo "[$repo] removing ignored tags"
+                set +e
+                git tag -d $(echo -n "$config" | jq -r 'try .ignore.tags[] catch empty')
+                set -e
+              fi
+  
+              echo "[$repo] Pushing to mirror repo"
+              git push --mirror origin
+              gh repo edit "external-mirrors/$repo" --default-branch "$( git remote show origin | grep "^  HEAD branch: " | cut -c 16- )"
+              cd ..
+              echo "[$repo] Cleaning"
+              rm -rf repo-dir remote-src remote-dist
+              cd ..
+            }&
           done
+
+          echo "Waiting for all jobs to complete" 
+          wait
+          echo "done"
