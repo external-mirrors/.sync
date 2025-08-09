@@ -106,7 +106,7 @@ jobs:
               set -e
               if [ "$ret" -eq 0 ]; then
                 echo "[$repo] Mirror is synchronized. skip"
-                cd /mnt/sync
+                # cd /mnt/sync
                 # continue
                 echo >&3
                 exit
@@ -159,6 +159,7 @@ jobs:
           echo "Waiting for all jobs to complete"
           sleep 0.5
           for ((i=0; i<MAX_JOBS; i++)); do
+            echo "waiting job: $i"
             read -u 3
           done
           echo "done"
