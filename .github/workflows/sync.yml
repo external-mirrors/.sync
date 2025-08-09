@@ -158,7 +158,7 @@ jobs:
 
           echo "Waiting for all jobs to complete"
           sleep 0.5
-          for ((i=0; i<${#JOBS[@]}; i++)); do
+          for ((i=0; i<${#MAX_JOBS[@]}; i++)); do
             read -u 3
           done
           echo "done"
