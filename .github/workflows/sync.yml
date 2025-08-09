@@ -40,8 +40,16 @@ jobs:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           # set -x
-          set -m
           MAX_JOBS=3
+
+          tmp_fifo=$(mktemp -u)
+          mkfifo "$tmp_fifo"
+          exec 3<>"$tmp_fifo"
+          # rm "$tmp_fifo"
+
+          for ((i=0; i<MAX_JOBS; i++)); do
+            echo >&3
+          done
 
           echo "===== 'df -h' ====="
           df -h
@@ -53,11 +61,9 @@ jobs:
           cp repos.json /mnt/sync/repos.json
           cd /mnt/sync
           jq -c '.[]' repos.json | while IFS= read -r config; do
-            export config
+            read -u 3
 
-            while [ "$(jobs -rp | wc -l)" -ge "$MAX_JOBS" ]; do
-              sleep 0.1
-            done
+            export config
 
             (
               url=$(echo "$config" | jq -r '.url')
@@ -141,13 +147,16 @@ jobs:
               echo "[$repo] Cleaning"
               rm -rf repo-dir remote-src remote-dist
               # cd ..
+              echo >&3
             )&
           done
 
           echo "Waiting for all jobs to complete"
-          sleep 0.1
-          echo "===== jobs ====="
-          jobs
-          echo "================"
-          wait
+          for ((i=0; i<${#JOBS[@]}; i++)); do
+              read -u 3
+          done
           echo "done"
+
+          exec 3>&-
+          exec 3<&-
+          rm "$tmp_fifo"
