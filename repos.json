@@ -179,5 +179,10 @@
     "url": "https://gitlab.postmarketos.org/postmarketOS/systemd.git",
     "type": "git",
     "repo": "pmos-systemd"
+  },
+  {
+    "url": "https://gitlab.com/kernel-firmware/linux-firmware.git",
+    "type": "git",
+    "repo": "linux-firmware"
   }
 ]
