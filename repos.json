@@ -184,5 +184,10 @@
     "url": "https://gitlab.com/kernel-firmware/linux-firmware.git",
     "type": "git",
     "repo": "linux-firmware"
+  },
+  {
+    "url": "https://gitlab.postmarketos.org/postmarketOS/postmarketos-mkinitfs.git",
+    "type": "git",
+    "repo": "postmarketos-mkinitfs"
   }
 ]
