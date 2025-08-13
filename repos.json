@@ -189,5 +189,10 @@
     "url": "https://gitlab.postmarketos.org/postmarketOS/postmarketos-mkinitfs.git",
     "type": "git",
     "repo": "postmarketos-mkinitfs"
+  },
+  {
+    "url": "https://git.sr.ht/~calebccff/pbsplash",
+    "type": "git",
+    "repo": "pbsplash"
   }
 ]
