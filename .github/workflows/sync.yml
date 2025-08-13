@@ -70,6 +70,8 @@ jobs:
             export config
 
             (
+              set +e
+
               url=$(echo "$config" | jq -r '.url')
               type=$(echo "$config" | jq -r '.type')
               repo=$(echo "$config" | jq -r '.repo')
@@ -83,10 +85,10 @@ jobs:
               mkdir "$repo" && cd "$repo"
   
               echo "[$repo] Check if the mirror repository is created"
-              set +e
+              # set +e
               gh repo view "external-mirrors/$repo" > /dev/null
               ret="$?"
-              set -e
+              # set -e
               if [ "$ret" -ne 0 ]; then
                 echo "[$repo] Creating target repo"
                 if [ "$private" = true ]; then
@@ -100,10 +102,10 @@ jobs:
               echo "[$repo] Compare remotes"
               git ls-remote --quiet --heads --tags "$url" | grep -Evf <(echo -n "$ignore_heads" | sed -e 's/^/\trefs\/heads\//' -e 's/$/$/') | grep -Evf <(echo -n "$ignore_tags" | sed -e 's/^/\trefs\/tags\//' -e 's/$/(\\^\\{\\})?$/') > remote-src
               git ls-remote --quiet --heads --tags "https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/external-mirrors/$repo" > remote-dist
-              set +e
+              # set +e
               diff remote-src remote-dist > /dev/null
               ret="$?"
-              set -e
+              # set -e
               if [ "$ret" -eq 0 ]; then
                 echo "[$repo] Mirror is synchronized. skip"
                 # cd /mnt/sync
@@ -140,9 +142,9 @@ jobs:
   
               if [ "$ignore_tags" != "" ]; then
                 echo "[$repo] removing ignored tags"
-                set +e
+                # set +e
                 git tag -d $(echo -n "$config" | jq -r 'try .ignore.tags[] catch empty')
-                set -e
+                # set -e
               fi
   
               echo "[$repo] Pushing to mirror repo"
