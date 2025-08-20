@@ -209,5 +209,10 @@
     "url": "https://https.git.savannah.gnu.org/git/bison.git",
     "type": "git",
     "repo": "bison"
+  },
+  {
+    "url": "https://https.git.savannah.gnu.org/git/paxutils.git",
+    "type": "git",
+    "repo": "paxutils"
   }
 ]
