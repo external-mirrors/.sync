@@ -194,5 +194,10 @@
     "url": "https://git.sr.ht/~calebccff/pbsplash",
     "type": "git",
     "repo": "pbsplash"
+  },
+  {
+    "url": "https://git.savannah.gnu.org/git/nano.git/",
+    "type": "git",
+    "repo": "nano"
   }
 ]
