@@ -199,5 +199,15 @@
     "url": "https://https.git.savannah.gnu.org/git/nano.git",
     "type": "git",
     "repo": "nano"
+  },
+  {
+    "url": "https://https.git.savannah.gnu.org/git/cpio.git",
+    "type": "git",
+    "repo": "cpio"
+  },
+  {
+    "url": "https://https.git.savannah.gnu.org/git/bison.git",
+    "type": "git",
+    "repo": "bison"
   }
 ]
