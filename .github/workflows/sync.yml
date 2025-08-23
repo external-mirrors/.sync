@@ -79,11 +79,11 @@ jobs:
               first="0"
               ignore_heads="$(echo -n "$config" | jq -r 'try .ignore.heads[] catch empty')"
               ignore_tags="$(echo -n "$config" | jq -r 'try .ignore.tags[] catch empty')"
-  
+
               echo "target: $repo"
-  
+
               mkdir "$repo" && cd "$repo"
-  
+
               echo "[$repo] Check if the mirror repository is created"
               # set +e
               gh repo view "external-mirrors/$repo" > /dev/null
@@ -98,7 +98,7 @@ jobs:
                 fi
                 first="1"
               fi
-  
+
               echo "[$repo] Compare remotes"
               git ls-remote --quiet --heads --tags "$url" | grep -Evf <(echo -n "$ignore_heads" | sed -e 's/^/\trefs\/heads\//' -e 's/$/$/') | grep -Evf <(echo -n "$ignore_tags" | sed -e 's/^/\trefs\/tags\//' -e 's/$/(\\^\\{\\})?$/') > remote-src
               git ls-remote --quiet --heads --tags "https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/external-mirrors/$repo" > remote-dist
@@ -113,7 +113,7 @@ jobs:
                 echo >&3
                 exit
               fi
-  
+
               echo "[$repo] Cloning source repo"
               mkdir repo-dir && cd repo-dir
               git init --bare
@@ -135,9 +135,17 @@ jobs:
               git remote set-url --push origin "https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/external-mirrors/$repo"
               if [ "$first" -eq 0 ]; then
                 git fetch --filter=blob:none
+                ret="$?"
               else
                 echo "[$repo] First time sync. full cloning"
                 git fetch
+                ret="$?"
+              fi
+
+              if [ "$ret" -eq 0 ]; then
+                echo "[$repo] failed to fetch."
+                echo >&3
+                exit
               fi
   
               if [ "$ignore_tags" != "" ]; then
