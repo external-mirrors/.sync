@@ -155,7 +155,7 @@ jobs:
               fi
 
               if [ "$ret" -eq 0 ]; then
-                echo "[$repo] failed to fetch."
+                echo "[$repo] failed to fetch. (err: $?)"
                 echo >&3
                 exit
               fi
