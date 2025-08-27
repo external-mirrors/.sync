@@ -101,7 +101,19 @@ jobs:
 
               echo "[$repo] Compare remotes"
               git ls-remote --quiet --heads --tags "$url" | grep -Evf <(echo -n "$ignore_heads" | sed -e 's/^/\trefs\/heads\//' -e 's/$/$/') | grep -Evf <(echo -n "$ignore_tags" | sed -e 's/^/\trefs\/tags\//' -e 's/$/(\\^\\{\\})?$/') > remote-src
+              ret="$?"
+              if [ "$ret" -eq 0 ]; then
+                echo "[$repo] failed to le-remote (origin)"
+                echo >&3
+                exit
+              fi
               git ls-remote --quiet --heads --tags "https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/external-mirrors/$repo" > remote-dist
+              ret="$?"
+              if [ "$ret" -eq 0 ]; then
+                echo "[$repo] failed to le-remote (mirror)"
+                echo >&3
+                exit
+              fi
               # set +e
               diff remote-src remote-dist > /dev/null
               ret="$?"
