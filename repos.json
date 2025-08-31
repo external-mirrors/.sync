@@ -214,5 +214,10 @@
     "url": "https://https.git.savannah.gnu.org/git/paxutils.git",
     "type": "git",
     "repo": "paxutils"
+  },
+  {
+    "url": "https://gerrit-public.fairphone.software/manifest",
+    "type": "git",
+    "repo": "fairphone-manifest"
   }
 ]
