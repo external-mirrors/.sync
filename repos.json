@@ -219,5 +219,15 @@
     "url": "https://gerrit-public.fairphone.software/manifest",
     "type": "git",
     "repo": "fairphone-manifest"
+  },
+  {
+    "url": "https://gitlab.com/mt6589-mainline/linux",
+    "type": "git",
+    "repo": "linux-mt6589-mainline-tooniis"
+  },
+  {
+    "url": "https://gitlab.com/vinibali/linux",
+    "type": "git",
+    "repo": "linux-mt6589-mainline-vinibali"
   }
 ]
