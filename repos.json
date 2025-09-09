@@ -229,5 +229,10 @@
     "url": "https://gitlab.com/vinibali/linux.git/",
     "type": "git",
     "repo": "linux-mt6589-mainline-vinibali"
+  },
+  {
+    "url": "https://git.sr.ht/~cloutier/bird.makeup",
+    "type": "git",
+    "repo": "bird.makeup"
   }
 ]
