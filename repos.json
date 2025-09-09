@@ -234,5 +234,10 @@
     "url": "https://git.sr.ht/~cloutier/bird.makeup",
     "type": "git",
     "repo": "bird.makeup"
+  },
+  {
+    "url": "https://gitlab.freedesktop.org/StaticRocket/mesa",
+    "type": "git",
+    "repo": "mesa-powervr"
   }
 ]
