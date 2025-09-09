@@ -10,6 +10,9 @@ on:
     #     default: ''
   schedule:
     - cron: '38 */1 * * *'
+  push:
+    paths:
+      - repos.json
 
 jobs:
   main:
