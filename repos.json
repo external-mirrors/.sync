@@ -239,5 +239,15 @@
     "url": "https://gitlab.freedesktop.org/StaticRocket/mesa",
     "type": "git",
     "repo": "mesa-powervr"
+  },
+  {
+    "url": "https://gitlab.com/pvrports/pvrports.git",
+    "type": "git",
+    "repo": "pvrports"
+  },
+  {
+    "url": "https://gitlab.com/pvrports/p-wlroots.git",
+    "type": "git",
+    "repo": "p-wlroots"
   }
 ]
