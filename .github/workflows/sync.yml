@@ -79,11 +79,17 @@ jobs:
               type=$(echo "$config" | jq -r '.type')
               repo=$(echo "$config" | jq -r '.repo')
               private=$(echo "$config" | jq -r '.private')
+              paused=$(echo "$config" | jq -r '.paused')
               first="0"
               ignore_heads="$(echo -n "$config" | jq -r 'try .ignore.heads[] catch empty')"
               ignore_tags="$(echo -n "$config" | jq -r 'try .ignore.tags[] catch empty')"
 
               echo "target: $repo"
+
+              if [ "$paused" = true ]; then
+                echo "[$repo] sync is paused."
+                echo >&3
+              fi
 
               mkdir "$repo" && cd "$repo"
 
