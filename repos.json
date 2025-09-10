@@ -272,13 +272,15 @@
     "url": "https://github.com/yuzu-emu-mirror/.archive.git",
     "type": "git",
     "repo": "yuzu-archives",
-    "private": true
+    "private": true,
+    "paused": true
   },
   {
     "url": "https://github.com/yuzu-emu-mirror/yuzu-emu.github.io.git",
     "type": "git",
     "repo": "yuzu-emu.github.io",
-    "private": true
+    "private": true,
+    "paused": true
   },
   {
     "url": "https://github.com/yuzu-emu-mirror/.github.git",
