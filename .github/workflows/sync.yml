@@ -89,6 +89,7 @@ jobs:
               if [ "$paused" = true ]; then
                 echo "[$repo] sync is paused."
                 echo >&3
+                exit
               fi
 
               mkdir "$repo" && cd "$repo"
