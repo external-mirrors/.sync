@@ -12,3 +12,19 @@ For example `feb356caff82e996ba0b898c02383fdfa3effc5f` .
 ## omap5-sgx-ddk-um-linux (private)
 
 The mirror is not publicly available because this repository is an unknown license.
+
+## how to mirror large repos ex. linux
+
+```sh
+mkdir repo
+cd depo
+git init --bare
+git remote add origin https://example.org/owner/repo.git
+git remote set-url --push https://github.com/external-mirrors/repo.git
+git fetch --tags
+while (Enough times)
+do
+  git push origin [tag]
+done
+# GitHub Actions will do the rest
+```
