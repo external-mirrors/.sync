@@ -236,7 +236,7 @@
     "repo": "bird.makeup"
   },
   {
-    "url": "https://gitlab.freedesktop.org/StaticRocket/mesa",
+    "url": "https://gitlab.freedesktop.org/StaticRocket/mesa.git/",
     "type": "git",
     "repo": "mesa-powervr"
   },
