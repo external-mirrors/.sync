@@ -462,5 +462,10 @@
     "url": "https://git.wut.ee/mikroskeem/aur-buildbot.git",
     "type": "git",
     "repo": "aur-buildbot"
+  },
+  {
+    "url": "https://gitlab.freedesktop.org/pipewire/helvum.git",
+    "type": "git",
+    "repo": "helvum"
   }
 ]
