@@ -14,6 +14,9 @@ on:
     paths:
       - repos.json
 
+concurrency:
+  group: sync
+
 jobs:
   main:
     runs-on: ubuntu-latest
