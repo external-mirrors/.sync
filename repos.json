@@ -472,5 +472,10 @@
     "url": "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
     "type": "git",
     "repo": "linux-next"
+  },
+  {
+    "url": "https://gitlab.postmarketos.org/postmarketOS/boot-deploy.git",
+    "type": "git",
+    "repo": "pmos-boot-deploy"
   }
 ]
