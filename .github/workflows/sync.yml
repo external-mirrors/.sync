@@ -68,10 +68,9 @@ jobs:
           sudo mkdir /mnt/sync
           sudo chown runner:runner -R /mnt/sync
 
-          cp repos.json /mnt/sync/repos.json
-          cd /mnt/sync
           jq -c '.[]' repos.json `find repos -type f -name '*.json'` | while IFS= read -r config; do
             read -u 3
+            cd /mnt/sync
 
             export config
 
