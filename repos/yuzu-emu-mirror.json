@@ -1,0 +1,172 @@
+[
+  {
+    "url": "https://git.eden-emu.dev/eden-emu/eden.git",
+    "type": "git",
+    "repo": "eden",
+    "private": true
+  },
+  {
+    "url": "https://github.com/yuzu-emu-mirror/yuzu.git",
+    "type": "git",
+    "repo": "yuzu",
+    "private": true
+  },
+  {
+    "url": "https://github.com/yuzu-emu-mirror/.archive.git",
+    "type": "git",
+    "repo": "yuzu-archives",
+    "private": true,
+    "paused": true
+  },
+  {
+    "url": "https://github.com/yuzu-emu-mirror/yuzu-emu.github.io.git",
+    "type": "git",
+    "repo": "yuzu-emu.github.io",
+    "private": true,
+    "paused": true
+  },
+  {
+    "url": "https://github.com/yuzu-emu-mirror/.github.git",
+    "type": "git",
+    "repo": "yuzu-emu-mirror-.github",
+    "private": true
+  },
+  {
+    "url": "https://github.com/yuzu-emu-mirror/citra-qt-installer.git",
+    "type": "git",
+    "repo": "yuzu-citra-qt-installer",
+    "private": true
+  },
+  {
+    "url": "https://github.com/yuzu-emu-mirror/yuzu-multiplayer-dedicated.git",
+    "type": "git",
+    "repo": "yuzu-multiplayer-dedicated",
+    "private": true
+  },
+  {
+    "url": "https://github.com/yuzu-emu-mirror/yuzu-mainline.git",
+    "type": "git",
+    "repo": "yuzu-mainline",
+    "private": true
+  },
+  {
+    "url": "https://github.com/yuzu-emu-mirror/yuzu-games-wiki.git",
+    "type": "git",
+    "repo": "yuzu-games-wiki",
+    "private": true
+  },
+  {
+    "url": "https://github.com/yuzu-emu-mirror/yuzu-android.git",
+    "type": "git",
+    "repo": "yuzu-android",
+    "private": true
+  },
+  {
+    "url": "https://github.com/yuzu-emu-mirror/unicorn.git",
+    "type": "git",
+    "repo": "yuzu-unicorn",
+    "private": true
+  },
+  {
+    "url": "https://github.com/yuzu-emu-mirror/sirit.git",
+    "type": "git",
+    "repo": "yuzu-sirit",
+    "private": true
+  },
+  {
+    "url": "https://github.com/yuzu-emu-mirror/shared-hugo-scripts.git",
+    "type": "git",
+    "repo": "yuzu-shared-hugo-scripts",
+    "private": true
+  },
+  {
+    "url": "https://github.com/yuzu-emu-mirror/shared-bulma-theme.git",
+    "type": "git",
+    "repo": "yuzu-shared-bulma-theme",
+    "private": true
+  },
+  {
+    "url": "https://github.com/yuzu-emu-mirror/liftinstall.git",
+    "type": "git",
+    "repo": "yuzu-liftinstall",
+    "private": true
+  },
+  {
+    "url": "https://github.com/yuzu-emu-mirror/ext-windows-bin.git",
+    "type": "git",
+    "repo": "yuzu-ext-windows-bin",
+    "private": true
+  },
+  {
+    "url": "https://github.com/yuzu-emu-mirror/ext-linux-bin.git",
+    "type": "git",
+    "repo": "yuzu-ext-linux-bin",
+    "private": true
+  },
+  {
+    "url": "https://github.com/yuzu-emu-mirror/ext-boost.git",
+    "type": "git",
+    "repo": "yuzu-ext-boost",
+    "private": true
+  },
+  {
+    "url": "https://github.com/yuzu-emu-mirror/build-environments.git",
+    "type": "git",
+    "repo": "yuzu-build-environments",
+    "private": true
+  },
+  {
+    "url": "https://github.com/yuzu-emu-mirror/AppImageKit-checkrt.git",
+    "type": "git",
+    "repo": "yuzu-AppImageKit-checkrt",
+    "private": true
+  },
+  {
+    "url": "https://github.com/yuzu-emu-mirror/yuzu-assets.git",
+    "type": "git",
+    "repo": "yuzu-yuzu-assets",
+    "private": true
+  },
+  {
+    "url": "https://github.com/yuzu-emu-mirror/mbedtls.git",
+    "type": "git",
+    "repo": "yuzu-mbedtls",
+    "private": true
+  },
+  {
+    "url": "https://github.com/yuzu-emu-mirror/FasTC.git",
+    "type": "git",
+    "repo": "yuzu-FasTC",
+    "private": true
+  },
+  {
+    "url": "https://github.com/yuzu-emu-mirror/ext-android-bin.git",
+    "type": "git",
+    "repo": "yuzu-ext-android-bin",
+    "private": true
+  },
+  {
+    "url": "https://github.com/yuzu-emu-mirror/discord-rpc.git",
+    "type": "git",
+    "repo": "yuzu-discord-rpc",
+    "private": true
+  },
+  {
+    "url": "https://github.com/yuzu-emu-mirror/discord-open-source.git",
+    "type": "git",
+    "repo": "yuzu-discord-open-source",
+    "private": true
+  },
+  {
+    "url": "https://github.com/yuzu-emu-mirror/Command-fix.git",
+    "type": "git",
+    "repo": "yuzu-Command-fix",
+    "private": true
+  },
+  {
+    "url": "https://github.com/yuzu-emu-mirror/breakpad.git",
+    "type": "git",
+    "repo": "yuzu-breakpad",
+    "private": true
+  }
+]

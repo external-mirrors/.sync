@@ -70,7 +70,7 @@ jobs:
 
           cp repos.json /mnt/sync/repos.json
           cd /mnt/sync
-          jq -c '.[]' repos.json | while IFS= read -r config; do
+          jq -c '.[]' repos.json `find repos -type f -name '*.json'` | while IFS= read -r config; do
             read -u 3
 
             export config
@@ -143,20 +143,20 @@ jobs:
               mkdir repo-dir && cd repo-dir
               git init --bare
               git remote add --mirror=fetch origin "$url"
-  
+
               git config unset --all remote.origin.fetch
-  
+
               git config set --append remote.origin.fetch '+refs/heads/*:refs/heads/*'
               echo -n "$ignore_heads" | while IFS= read -r ignore_name; do
                 git config set --append remote.origin.fetch "^refs/heads/$ignore_name"
               done
-  
+
               git config set --append remote.origin.fetch '+refs/tags/*:refs/tags/*'
               # Negative refspecs for tags are not supported
               # echo -n "$ignore_tags" | while IFS= read -r ignore_name; do
               #   git config set --append remote.origin.fetch "^refs/tags/$ignore_name:refs/tags/$ignore_name"
               # done
-  
+
               git remote set-url --push origin "https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/external-mirrors/$repo"
               if [ "$first" -eq 0 ]; then
                 git fetch --filter=blob:none
@@ -172,14 +172,14 @@ jobs:
                 echo >&3
                 exit
               fi
-  
+
               if [ "$ignore_tags" != "" ]; then
                 echo "[$repo] removing ignored tags"
                 # set +e
                 git tag -d $(echo -n "$config" | jq -r 'try .ignore.tags[] catch empty')
                 # set -e
               fi
-  
+
               echo "[$repo] Pushing to mirror repo"
               git push --mirror origin
               gh repo edit "external-mirrors/$repo" --default-branch "$( git remote show origin | grep "^  HEAD branch: " | cut -c 16- )"
