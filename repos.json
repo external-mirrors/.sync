@@ -208,5 +208,10 @@
     "type": "git",
     "repo": "linux-libre",
     "paused": true
+  },
+  {
+    "url": "https://git.savannah.nongnu.org/git/linux-libre-fw.git",
+    "type": "git",
+    "repo": "linux-libre-fw"
   }
 ]
