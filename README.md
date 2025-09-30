@@ -20,7 +20,7 @@ mkdir repo
 cd depo
 git init --bare
 git remote add origin https://example.org/owner/repo.git
-git remote set-url --push https://github.com/external-mirrors/repo.git
+git remote set-url --push origin https://github.com/external-mirrors/repo.git
 git fetch --tags
 while (Enough times)
 do
