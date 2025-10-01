@@ -206,8 +206,7 @@
   {
     "url": "git://linux-libre.fsfla.org/releases.git",
     "type": "git",
-    "repo": "linux-libre",
-    "paused": true
+    "repo": "linux-libre"
   },
   {
     "url": "https://git.savannah.nongnu.org/git/linux-libre-fw.git",
