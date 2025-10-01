@@ -164,7 +164,7 @@ jobs:
 
               if [ "$first" -eq 0 ]; then
                 git fetch mirror --filter=blob:none
-                git fetch origin --filter=blob:none
+                git fetch origin
                 ret="$?"
               else
                 echo "[$repo] First time sync. full cloning"
