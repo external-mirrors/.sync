@@ -212,5 +212,15 @@
     "url": "https://git.savannah.nongnu.org/git/linux-libre-fw.git",
     "type": "git",
     "repo": "linux-libre-fw"
+  },
+  {
+    "url": "https://gitlab.com/UniQMG/tetrio-plus.git",
+    "type": "git",
+    "repo": "tetrio-plus"
+  },
+  {
+    "url": "https://gitlab.com/UniQMG/tpsecore.git",
+    "type": "git",
+    "repo": "tpsecore"
   }
 ]
