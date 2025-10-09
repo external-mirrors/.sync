@@ -51,7 +51,7 @@ jobs:
           # not required
           git config --global init.defaultBranch main
 
-          MAX_JOBS=3
+          MAX_JOBS=7
 
           tmp_fifo=$(mktemp -u)
           mkfifo "$tmp_fifo"
