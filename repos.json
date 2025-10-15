@@ -222,5 +222,9 @@
     "url": "https://gitlab.com/UniQMG/tpsecore.git",
     "type": "git",
     "repo": "tpsecore"
+  }, {
+    "url": "https://git.sr.ht/~leon_plickat/wayneko",
+    "type": "git",
+    "repo": "wayneko"
   }
 ]
