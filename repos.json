@@ -226,5 +226,9 @@
     "url": "https://git.sr.ht/~leon_plickat/wayneko",
     "type": "git",
     "repo": "wayneko"
+  }, {
+    "url": "https://gitlab.freedesktop.org/imagination/linux-firmware.git",
+    "type": "git",
+    "repo": "linux-firmware-imagination"
   }
 ]
