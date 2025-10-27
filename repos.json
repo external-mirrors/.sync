@@ -234,5 +234,9 @@
     "url": "https://codeberg.org/grunfink/snac2",
     "type": "git",
     "repo": "snac2"
+  }, {
+    "url": "https://gitlab.com/ubports/development/core/lomiri.git",
+    "type": "git",
+    "repo": "lomiri"
   }
 ]
