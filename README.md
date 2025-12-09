@@ -28,3 +28,41 @@ do
 done
 # GitHub Actions will do the rest
 ```
+
+```sh
+#!/bin/bash
+
+TAGS_PER_PUSH=8
+
+TAG_LIST=$(git tag -l 'v*')
+readarray -t TAG_ARRAY <<< "$TAG_LIST"
+
+TOTAL_TAGS=${#TAG_ARRAY[@]}
+
+echo "--- Push Git tags in ${TAGS_PER_PUSH} increments (total: ${TOTAL_TAGS} tags) ---"
+
+i=0
+
+while [ $i -lt $TOTAL_TAGS ]; do
+    START_INDEX=$i
+
+    END_INDEX=$((i + TAGS_PER_PUSH < TOTAL_TAGS ? i + TAGS_PER_PUSH : TOTAL_TAGS))
+
+    LENGTH=$((END_INDEX - START_INDEX))
+    TAGS_TO_PUSH=${TAG_ARRAY[@]:START_INDEX:LENGTH}
+
+    echo "--- [${START_INDEX} / ${TOTAL_TAGS}] pushing ${LENGTH} tags ---"
+    echo "  tag: ${TAGS_TO_PUSH}"
+
+    git push mirror ${TAGS_TO_PUSH} || { 
+        echo "🚨 faled to push, continue..." 
+    }
+
+    i=$END_INDEX
+    
+    echo "--- push done ---"
+    echo ""
+done
+
+echo "✅ all done"
+```
