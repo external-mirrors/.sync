@@ -1,0 +1,7 @@
+[
+  {
+    "url": "https://chromium.googlesource.com/chromiumos/third_party/kernel",
+    "type": "git",
+    "repo": "chromiumos-third_party-kernel"
+  }
+]
