@@ -242,5 +242,9 @@
     "url": "https://gitlab.metager.de/open-source/MetaGer.git",
     "type": "git",
     "repo": "MetaGer"
+  }, {
+    "url": "https://repo.dec05eba.com/phoenix",
+    "type": "git",
+    "repo": "phoenix"
   }
 ]
