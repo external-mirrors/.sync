@@ -250,5 +250,29 @@
     "url": "https://gitlab.freedesktop.org/wayback/wayback.git",
     "type": "git",
     "repo": "wayback"
+  }, {
+    "url": "https://gitlab.com/mtk-mainline/mt6755/linux.git",
+    "type": "git",
+    "repo": "mt6755-mainline-linux"
+  }, {
+    "url": "https://gitlab.com/mtk-mainline/mt6762/linux.git",
+    "type": "git",
+    "repo": "mt6762-mainline-linux"
+  }, {
+    "url": "https://gitlab.com/mtk-mainline/mt6763/linux.git",
+    "type": "git",
+    "repo": "mt6763-mainline-linux"
+  }, {
+    "url": "https://gitlab.com/mtk-mainline/mt6768/linux.git",
+    "type": "git",
+    "repo": "mt6768-mainline-linux"
+  }, {
+    "url": "https://gitlab.postmarketos.org/mt6785-mainline/linux.git",
+    "type": "git",
+    "repo": "mt6785-mainline-linux"
+  }, {
+    "url": "https://gitlab.postmarketos.org/mt6757-mainline/linux.git",
+    "type": "git",
+    "repo": "mt6757-mainline/linux"
   }
 ]
