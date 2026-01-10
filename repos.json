@@ -273,6 +273,6 @@
   }, {
     "url": "https://gitlab.postmarketos.org/mt6757-mainline/linux.git",
     "type": "git",
-    "repo": "mt6757-mainline/linux"
+    "repo": "mt6757-mainline-linux"
   }
 ]
