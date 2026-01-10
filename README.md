@@ -135,3 +135,21 @@ wait
 
 echo "✅ all done"
 ```
+
+### without tags (by Gemini 3 Flash)
+
+```sh
+COMMIT_REVS=$(git rev-list --reverse HEAD)
+COUNT=0
+BATCH=60000
+
+for REV in $COMMIT_REVS; do
+    COUNT=$((COUNT + 1))
+    if [ $((COUNT % BATCH)) -eq 0 ]; then
+        echo "Pushing up to commit $COUNT..."
+        git push mirror $REV:refs/heads/$(git branch --show-current)
+    fi
+done
+
+git push mirror --mirror
+```
