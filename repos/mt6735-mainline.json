@@ -1,0 +1,19 @@
+[
+  {
+    "url": "https://gitlab.com/mt6735-mainline/linux.git",
+    "type": "git",
+    "repo": "mt6735-mainline-linux"
+  }, {
+    "url": "https://gitlab.com/mt6735-mainline/bootshim.git",
+    "type": "git",
+    "repo": "mt6735-mainline-bootshim"
+  }, {
+    "url": "https://gitlab.com/mt6735-mainline/pmaports.git",
+    "type": "git",
+    "repo": "mt6735-mainline-pmaports"
+  }, {
+    "url": "https://gitlab.com/mt6735-mainline/u-boot.git",
+    "type": "git",
+    "repo": "mt6735-mainline-u-boot"
+  }
+]
