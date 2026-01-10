@@ -1,4 +1,4 @@
-<img width="885" height="260" alt="image" src="https://github.com/user-attachments/assets/d7932059-ded6-41f9-9682-a83aaa1e35a6" /># .sync
+# .sync
 
 ## mesa
 
