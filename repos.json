@@ -278,5 +278,9 @@
     "url": "https://gitlab.com/sm6225-mainline/linux.git",
     "type": "git",
     "repo": "sm6225-mainline-linux"
+  }, {
+    "url": "https://gitlab.com/android_translation_layer/android_translation_layer.git",
+    "type": "git",
+    "repo": "android_translation_layer"
   }
 ]
