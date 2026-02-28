@@ -282,5 +282,13 @@
     "url": "https://gitlab.com/android_translation_layer/android_translation_layer.git",
     "type": "git",
     "repo": "android_translation_layer"
+  }, {
+    "url": "hurd",
+    "type": "git",
+    "repo": "https://https.git.savannah.gnu.org/git/hurd/hurd.git"
+  }, {
+    "url": "gnumach",
+    "type": "git",
+    "repo": "https://https.git.savannah.gnu.org/git/hurd/gnumach.git"
   }
 ]
