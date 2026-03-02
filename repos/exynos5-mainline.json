@@ -1,0 +1,22 @@
+[
+  {
+    "url": "https://gitlab.com/exynos5-mainline/linux.git",
+    "type": "git",
+    "repo": "exynos5-mainline-linux"
+  },
+  {
+    "url": "https://gitlab.com/exynos5-mainline/linux-downstream.git",
+    "type": "git",
+    "repo": "exynos5-mainline-linux-downstream"
+  },
+  {
+    "url": "https://gitlab.com/exynos5-mainline/pmaports.git",
+    "type": "git",
+    "repo": "exynos5-mainline-pmaports"
+  },
+  {
+    "url": "https://gitlab.com/exynos5-mainline/u-boot.git",
+    "type": "git",
+    "repo": "exynos5-mainline-u-boot"
+  }
+]
