@@ -89,6 +89,10 @@ jobs:
 
               echo "target: $repo"
 
+              function log() {
+                echo "[$repo]" "${@}"
+              }
+
               if [ "$paused" = true ]; then
                 echo "[$repo] sync is paused."
                 echo >&3
@@ -187,6 +191,95 @@ jobs:
 
               echo "[$repo] Pushing to mirror repo"
               git push --mirror mirror
+              if [ "$ret" -ne 0 ]; then
+                log "Failed to push, fallback"
+                BRANCHES=$(git for-each-ref --format='%(refname:lstrip=2)' refs/heads/)
+
+                for CURRENT_BRANCH in $BRANCHES; do
+                  log "=== Processing branch: $CURRENT_BRANCH ==="
+
+                  BATCH=0
+                  MAX_BATCH=100000
+                  MIN_BATCH=1
+
+                  TOTAL_ORIG=$(git rev-list --count "refs/heads/$CURRENT_BRANCH")
+                  PROCESSED=0
+
+                  while true; do
+                    check_and_refresh_token
+
+                    MIRROR_TIP=$(git ls-remote mirror "refs/heads/$CURRENT_BRANCH" | awk '{print $1}')
+
+                    if [ -n "$MIRROR_TIP" ]; then
+                      mapfile -t COMMITS < <(git rev-list --reverse --ancestry-path "${MIRROR_TIP}..refs/heads/${CURRENT_BRANCH}")
+                    else
+                      mapfile -t COMMITS < <(git rev-list --reverse "refs/heads/$CURRENT_BRANCH")
+                    fi
+
+                    TOTAL=${#COMMITS[@]}
+
+                    if [ "$TOTAL" -eq 0 ]; then
+                      log "Already up-to-date. skip"
+                      break
+                    fi
+
+                    log "Total new commits: $TOTAL (mirror tip: ${MIRROR_TIP:-none})"
+
+                    if [ "$BATCH" -eq 0 ]; then
+                      CURRENT_TRY=$TOTAL
+                    else
+                      CURRENT_TRY=$(( TOTAL < BATCH ? TOTAL : BATCH ))
+                    fi
+
+                    TARGET_REV=${COMMITS[$((CURRENT_TRY - 1))]}
+
+                    log "--- Attempting: $CURRENT_TRY commits (Progress (approx): $PROCESSED/$TOTAL_ORIG) ---"
+
+                    if git push mirror "$TARGET_REV:refs/heads/$CURRENT_BRANCH"; then
+                      log ">> Success."
+
+                      PROCESSED=$((PROCESSED + CURRENT_TRY))
+
+                      if [ "$BATCH" -eq 0 ]; then
+                        BATCH=$CURRENT_TRY
+                      fi
+
+                      BATCH=$((BATCH * 12 / 10 + 3))
+                      [ $BATCH -gt $MAX_BATCH ] && BATCH=$MAX_BATCH
+
+                      log ">> Increasing batch size to $BATCH for next step."
+                    else
+                      log ">> Failed! Reducing batch size..."
+
+                      if [ "$BATCH" -eq 0 ]; then
+                        BATCH=$((CURRENT_TRY / 2))
+                      else
+                        if [ $BATCH -gt $CURRENT_TRY ]; then
+                          BATCH=$CURRENT_TRY
+                        else
+                          if [ $BATCH -le 3 ]; then
+                            BATCH=$((BATCH - 1))
+                          else
+                            BATCH=$((BATCH / 2))
+                          fi
+                        fi
+                      fi
+
+                      if [ $BATCH -lt $MIN_BATCH ]; then
+                        if [ $CURRENT_TRY -eq 1 ]; then
+                          log "Fatal: Single commit push failed. Check for large files or remote limits."
+                          return 1
+                        fi
+                        BATCH=$MIN_BATCH
+                      fi
+
+                      log ">> Retrying with smaller batch: $BATCH"
+                    fi
+                  done
+                done
+                gh repo edit "external-mirrors/$repo" --default-branch "$( git remote show origin | grep "^  HEAD branch: " | cut -c 16- )"
+                git push mirror --mirror
+              fi
               gh repo edit "external-mirrors/$repo" --default-branch "$( git remote show origin | grep "^  HEAD branch: " | cut -c 16- )"
               cd ..
               echo "[$repo] Cleaning"
