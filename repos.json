@@ -247,12 +247,16 @@
     "type": "git",
     "repo": "android_translation_layer"
   }, {
-    "url": "hurd",
+    "url": "https://https.git.savannah.gnu.org/git/hurd/hurd.git",
     "type": "git",
-    "repo": "https://https.git.savannah.gnu.org/git/hurd/hurd.git"
+    "repo": "hurd"
   }, {
-    "url": "gnumach",
+    "url": "https://https.git.savannah.gnu.org/git/hurd/gnumach.git",
     "type": "git",
-    "repo": "https://https.git.savannah.gnu.org/git/hurd/gnumach.git"
+    "repo": "gnumach"
+  }, {
+    "url": "https://gitlab.com/nigelcunningham/tuxonice-kernel.git",
+    "type": "git",
+    "repo": "tuxonice-kernel"
   }
 ]
