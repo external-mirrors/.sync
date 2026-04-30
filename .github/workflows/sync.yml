@@ -29,7 +29,6 @@ jobs:
         with:
           app-id: ${{ secrets.APP_ID }}
           private-key: ${{ secrets.PRIVATE_KEY }}
-          # owner: ${{ github.repository_owner }}
           owner: external-mirrors
 
       - name: Get GitHub App User ID
@@ -118,20 +117,7 @@ jobs:
 
               echo "[$repo] Compare remotes"
               git ls-remote --quiet --heads --tags "$url" | grep -Evf <(echo -n "$ignore_heads" | sed -e 's/^/\trefs\/heads\//' -e 's/$/$/') | grep -Evf <(echo -n "$ignore_tags" | sed -e 's/^/\trefs\/tags\//' -e 's/$/(\\^\\{\\})?$/') > remote-src
-              # ret="$?"
-              # if [ "$ret" -eq 0 ]; then
-              #   echo "[$repo] failed to ls-remote (origin)"
-              #   echo >&3
-              #   exit
-              # fi
               git ls-remote --quiet --heads --tags "https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/external-mirrors/$repo" > remote-dist
-              # ret="$?"
-              # if [ "$ret" -ne 0 ]; then
-              #   echo "[$repo] failed to ls-remote (mirror)"
-              #   echo >&3
-              #   exit
-              # fi
-              # set +e
               diff remote-src remote-dist > /dev/null
               ret="$?"
               # set -e
@@ -161,10 +147,6 @@ jobs:
 
               git config set --append remote.origin.fetch '+refs/tags/*:refs/tags/*'
               git config set --append remote.mirror.fetch '+refs/tags/*:refs/tags/*'
-              # Negative refspecs for tags are not supported
-              # echo -n "$ignore_tags" | while IFS= read -r ignore_name; do
-              #   git config set --append remote.origin.fetch "^refs/tags/$ignore_name:refs/tags/$ignore_name"
-              # done
 
               if [ "$first" -eq 0 ]; then
                 git fetch mirror --filter=blob:none
