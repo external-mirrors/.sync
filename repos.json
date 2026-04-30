@@ -133,7 +133,8 @@
   {
     "url": "https://git.sr.ht/~cloutier/bird.makeup",
     "type": "git",
-    "repo": "bird.makeup"
+    "repo": "bird.makeup",
+    "paused": true
   },
   {
     "url": "https://gitlab.freedesktop.org/StaticRocket/mesa.git/",
