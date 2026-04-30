@@ -1,6 +1,5 @@
-{"url":"https://github.com/yuzu-emu-mirror/FasTC.git","type":"git","repo":"yuzu-FasTC","private":true,"paused":true}
-{"url":"https://git.savannah.nongnu.org/git/linux-libre-fw.git","type":"git","repo":"linux-libre-fw"}
-{"url":"https://gitlab.freedesktop.org/pipewire/helvum.git","type":"git","repo":"helvum"}
-{"url":"https://codeberg.org/silverpill/mitra-web.git","type":"git","repo":"mitra-web"}
-{"url":"https://https.git.savannah.gnu.org/git/paxutils.git","type":"git","repo":"paxutils"}
-{"url":"https://gitlab.com/pvrports/pvrports.git","type":"git","repo":"pvrports"}
+{"url":"https://git.ti.com/git/graphics/omap5-sgx-ddk-linux.git","type":"git","repo":"omap5-sgx-ddk-linux"}
+{"url":"https://gitlab.com/UniQMG/tetrio-plus.git","type":"git","repo":"tetrio-plus"}
+{"url":"https://gitlab.postmarketos.org/mt6757-mainline/linux.git","type":"git","repo":"mt6757-mainline-linux"}
+{"url":"https://git.sr.ht/~leon_plickat/wayneko","type":"git","repo":"wayneko"}
+{"url":"https://gitlab.postmarketos.org/postmarketOS/systemd.git","type":"git","repo":"pmos-systemd"}

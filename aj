@@ -1,6 +1,6 @@
-{"url":"https://gitlab.freedesktop.org/mstoeckl/waypipe.git","type":"git","repo":"waypipe"}
-{"url":"https://git.sr.ht/~leon_plickat/wayneko","type":"git","repo":"wayneko"}
-{"url":"https://git.wut.ee/mikroskeem/aur-buildbot.git","type":"git","repo":"aur-buildbot"}
-{"url":"https://gitlab.postmarketos.org/postmarketOS/pmbootstrap.git","type":"git","repo":"pmbootstrap"}
-{"url":"https://gitlab.com/pvrports/p-wlroots.git","type":"git","repo":"p-wlroots"}
-{"url":"https://gitlab.postmarketos.org/mt6785-mainline/linux.git","type":"git","repo":"mt6785-mainline-linux"}
+{"url":"https://github.com/yuzu-emu-mirror/mbedtls.git","type":"git","repo":"yuzu-mbedtls","private":true,"paused":true}
+{"url":"https://gitlab.freedesktop.org/pipewire/helvum.git","type":"git","repo":"helvum"}
+{"url":"https://gitlab.com/ubports/development/core/lomiri.git","type":"git","repo":"lomiri"}
+{"url":"https://gitlab.com/mt6735-mainline/u-boot.git","type":"git","repo":"mt6735-mainline-u-boot"}
+{"url":"https://android.googlesource.com/kernel/mediatek","type":"git","repo":"aosp-kernel_mediatek"}
+{"url":"https://github.com/yuzu-emu-mirror/yuzu-multiplayer-dedicated.git","type":"git","repo":"yuzu-multiplayer-dedicated","private":true,"paused":true}

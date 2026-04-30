@@ -1,6 +1,6 @@
-{"url":"https://github.com/yuzu-emu-mirror/build-environments.git","type":"git","repo":"yuzu-build-environments","private":true,"paused":true}
-{"url":"https://akkoma.dev/AkkomaGang/akkoma.git","type":"git","repo":"akkoma"}
-{"url":"https://gitlab.com/exynos5-mainline/u-boot.git","type":"git","repo":"exynos5-mainline-u-boot"}
-{"url":"https://gitlab.postmarketos.org/mt6757-mainline/linux.git","type":"git","repo":"mt6757-mainline-linux"}
-{"url":"https://gitlab.metager.de/open-source/MetaGer.git","type":"git","repo":"MetaGer"}
-{"url":"https://https.git.savannah.gnu.org/git/nano.git","type":"git","repo":"nano"}
+{"url":"https://github.com/yuzu-emu-mirror/discord-open-source.git","type":"git","repo":"yuzu-discord-open-source","private":true,"paused":true}
+{"url":"https://gitlab.freedesktop.org/libinput/libinput.git","type":"git","repo":"libinput"}
+{"url":"https://github.com/citra-mirror/citra.git","type":"git","repo":"citra-mirror","private":true}
+{"url":"https://gitlab.com/mtk-mainline/mt6755/linux.git","type":"git","repo":"mt6755-mainline-linux"}
+{"url":"https://git.ti.com/git/graphics/omap5-sgx-ddk-um-linux.git","type":"git","repo":"omap5-sgx-ddk-um-linux","private":true}
+{"url":"https://gitlab.com/mtk-mainline/mt6768/linux.git","type":"git","repo":"mt6768-mainline-linux"}
