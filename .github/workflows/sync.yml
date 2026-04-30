@@ -349,11 +349,6 @@ jobs:
               status="OK"
               echo "::group::$repo"
               log "Start"
-              if grep -xF "/$repo" "$REPO_DIR/skip.list"; then
-                log "Done (Skip) ($CURRENT/$TOTAL_COUNT)"
-                echo >&3
-                exit
-              fi
               if ! sync_mirror "$config"; then
                 log "Failed"
                 echo "$repo" >> /mnt/failed-repos
