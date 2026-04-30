@@ -345,7 +345,7 @@ jobs:
 
             (
               start_time=$(date +%s.%N)
-              repo=$(jq -r '.name' <<< "$config" | tr '/' '_')
+              repo=$(jq -r '.name' <<< "$config")
               status="OK"
               echo "::group::$repo"
               log "Start"
