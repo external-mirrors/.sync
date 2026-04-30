@@ -221,8 +221,7 @@ jobs:
               log "Fetching from mirror"
               git fetch --quiet mirror --filter=blob:none
               log "Fetching from origin"
-              git fetch
-              # git fetch --quiet --prune --prune-tags origin
+              git fetch --quiet --prune --prune-tags origin
             else
               log "First time sync. full cloning"
               git fetch --quiet origin
