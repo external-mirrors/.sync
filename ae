@@ -1,6 +1,6 @@
-{"url":"https://git.eden-emu.dev/eden-emu/eden.git","type":"git","repo":"eden","private":true,"paused":true}
-{"url":"https://gitlab.com/kernel-firmware/linux-firmware.git","type":"git","repo":"linux-firmware"}
-{"url":"https://gitlab.com/mtk-mainline/mt6763/linux.git","type":"git","repo":"mt6763-mainline-linux"}
-{"url":"https://git.ti.com/git/graphics/omap5-sgx-ddk-linux.git","type":"git","repo":"omap5-sgx-ddk-linux"}
-{"url":"https://https.git.savannah.gnu.org/git/cpio.git","type":"git","repo":"cpio"}
-{"url":"https://github.com/yuzu-emu-mirror/discord-rpc.git","type":"git","repo":"yuzu-discord-rpc","private":true,"paused":true}
+{"url":"https://repo.dec05eba.com/phoenix","type":"git","repo":"phoenix"}
+{"url":"https://gitlab.com/mt6735-mainline/bootshim.git","type":"git","repo":"mt6735-mainline-bootshim"}
+{"url":"https://github.com/yuzu-emu-mirror/AppImageKit-checkrt.git","type":"git","repo":"yuzu-AppImageKit-checkrt","private":true,"paused":true}
+{"url":"https://github.com/yuzu-emu-mirror/yuzu-mainline.git","type":"git","repo":"yuzu-mainline","private":true,"paused":true}
+{"url":"https://gerrit-public.fairphone.software/manifest","type":"git","repo":"fairphone-manifest"}
+{"url":"https://gitlab.freedesktop.org/mesa/mesa.git","type":"git","repo":"mesa","ignore":{"tags":["R300_DRIVER_0","before_upgrade_03_01_05","blended_fountain","embedded-1-20030120","embedded-1-20030224","embedded-1-20030305","embedded-1-20030324","embedded-1-20030417","embedded-1-20030502","gliding_penguin","jump_and_click","kw-mesa-1","mesa-6_5-20060712","mesa_20050504","mesa_20050526","mesa_20050610","mesa_20050715","mesa_20060201","mesa_20060325","mesa_3_1","mesa_3_1_beta_3","mesa_3_2","mesa_3_2_1","mesa_3_2_beta_1","mesa_3_3","mesa_3_4","mesa_3_4_1","mesa_3_4_2","mesa_3_5","mesa_4_0","mesa_4_0_1","mesa_4_0_2","mesa_4_0_3","mesa_4_0_4","mesa_4_1","mesa_5_0","mesa_5_0_1","mesa_6_3","mesa_6_3_1","mesa_6_3_1_1","mesa_6_3_2","mesa_6_4","mesa_6_4_1","mesa_6_4_2","mesa_6_5","mesa_6_5_1","mesa_6_5_2","mesa_texman_20060210","noisy_cube","red_tinted_cube","rotating_gears","shimmering_gears","start","texman_0_1_20060325","texman_0_1_20060330","texman_0_1_20060621","texman_0_1_20060705","texman_0_1_pre_ttm","texmem_0_2_20060912","texmem_0_3_20060923","texmem_0_3_20060929","the_perfect_frag","trunk_20040329","unichrome-last-xinerama","vtx-0-2-21112003-freeze","vtx-0-2-24112003"]}}
