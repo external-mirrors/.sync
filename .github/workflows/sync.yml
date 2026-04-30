@@ -163,7 +163,7 @@ jobs:
             ignore_tags="$(jq -r 'try .ignore.tags[] catch empty' <<< "$config")"
 
             if [ "$paused" = true ]; then
-              echo "[$repo] sync is paused."
+              log "sync is paused."
               return
             fi
 
@@ -347,7 +347,7 @@ jobs:
               start_time=$(date +%s.%N)
               repo=$(jq -r '.repo' <<< "$config")
               status="OK"
-              echo "::group::$repo"
+              echo "::group::$repo ($CURRENT/$TOTAL_COUNT)"
               log "Start"
               if ! sync_mirror "$config"; then
                 log "Failed"
