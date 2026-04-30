@@ -189,7 +189,7 @@ jobs:
             git ls-remote --quiet --heads --tags "https://github.com/external-mirrors/$repo" > remote-dist &
             wait
             set +e
-            diff remote-src remote-dist > /dev/null
+            diff remote-src remote-dist
             ret="$?"
             set -e
             if [ "$ret" -eq 0 ]; then
