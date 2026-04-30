@@ -154,7 +154,8 @@
     "url": "https://git.citron-emu.org/citron/emulator.git",
     "type": "git",
     "repo": "citron",
-    "private": true
+    "private": true,
+    "paused": true
   },
   {
     "url": "https://github.com/neobrain/citra.git",
