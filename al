@@ -1,6 +1,6 @@
-{"url":"https://gitlab.postmarketos.org/postmarketOS/systemd.git","type":"git","repo":"pmos-systemd"}
-{"url":"https://github.com/yuzu-emu-mirror/unicorn.git","type":"git","repo":"yuzu-unicorn","private":true,"paused":true}
-{"url":"https://https.git.savannah.gnu.org/git/cpio.git","type":"git","repo":"cpio"}
-{"url":"https://github.com/yuzu-emu-mirror/yuzu-games-wiki.git","type":"git","repo":"yuzu-games-wiki","private":true,"paused":true}
-{"url":"https://github.com/yuzu-emu-mirror/FasTC.git","type":"git","repo":"yuzu-FasTC","private":true,"paused":true}
-{"url":"https://github.com/yuzu-emu-mirror/discord-open-source.git","type":"git","repo":"yuzu-discord-open-source","private":true,"paused":true}
+{"url":"https://https.git.savannah.gnu.org/git/bison.git","type":"git","repo":"bison"}
+{"url":"https://git.savannah.gnu.org/git/gnulib.git/","type":"git","repo":"gnulib"}
+{"url":"https://github.com/neobrain/citra.git","type":"git","repo":"citra","private":true}
+{"url":"https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git","type":"git","repo":"linux-next"}
+{"url":"https://github.com/yuzu-emu-mirror/build-environments.git","type":"git","repo":"yuzu-build-environments","private":true,"paused":true}
+{"url":"https://github.com/yuzu-emu-mirror/ext-windows-bin.git","type":"git","repo":"yuzu-ext-windows-bin","private":true,"paused":true}
