@@ -1,6 +1,6 @@
-{"url":"https://git.ti.com/git/graphics/omap5-sgx-ddk-linux.git","type":"git","repo":"omap5-sgx-ddk-linux"}
-{"url":"https://gitlab.postmarketos.org/postmarketOS/buffybox.git","type":"git","repo":"buffybox"}
-{"url":"https://codeberg.org/forgejo/forgejo.git","type":"git","repo":"forgejo"}
-{"url":"https://gitlab.postmarketos.org/postmarketOS/pmbootstrap.git","type":"git","repo":"pmbootstrap"}
-{"url":"https://codeberg.org/ums9230-mainline/linux.git","type":"git","repo":"ums9230-mainline-linux"}
-{"url":"https://github.com/yuzu-emu-mirror/.archive.git","type":"git","repo":"yuzu-archives","private":true,"paused":true}
+{"url":"https://gitlab.postmarketos.org/postmarketOS/systemd.git","type":"git","repo":"pmos-systemd"}
+{"url":"https://github.com/neobrain/citra.git","type":"git","repo":"citra","private":true}
+{"url":"https://gitlab.freedesktop.org/xorg/xserver.git","type":"git","repo":"xorg-xserver"}
+{"url":"https://gitlab.com/exynos5-mainline/linux.git","type":"git","repo":"exynos5-mainline-linux"}
+{"url":"https://github.com/yuzu-emu-mirror/yuzu-games-wiki.git","type":"git","repo":"yuzu-games-wiki","private":true,"paused":true}
+{"url":"https://gitlab.com/mtk-mainline/mt6763/linux.git","type":"git","repo":"mt6763-mainline-linux"}
